@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const port = process.env.PORT || 3000
 
 // middleware 
@@ -53,9 +53,14 @@ async function run() {
             res.send(result)
         })
 
-        app.delete('/users/:id', (req,res) =>{
+        app.delete('/users/:id', async(req,res) =>{
             console.log(req.params)
             const id =req.params.id;
+            // ei khane id just number , kintu id k object diye ref kore rakhe jeta database 
+            // gele dekhs jabe 
+            const query =  {_id: new ObjectId(id)};
+            const result = await userCollection.deleteOne(query);
+            res.send(result);
         } ) 
 
 
