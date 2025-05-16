@@ -45,6 +45,12 @@ async function run() {
         })
         // got to locahost and user /users 
 
+
+        // for single data get 
+        app.get('/users/:id', async(req,res) =>{
+           const id = req.params.id;
+        })
+
         //  data sendin on server 
         app.post('/users',async(req,res) => {
             console.log(req.body)
