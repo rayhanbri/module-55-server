@@ -53,6 +53,11 @@ async function run() {
             res.send(result)
         })
 
+        app.delete('/users/:id', (req,res) =>{
+            console.log(req.params)
+            const id =req.params.id;
+        } ) 
+
 
         // connection check kore commment kore dilam 
         // Send a ping to confirm a successful connection
