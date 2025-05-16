@@ -35,6 +35,16 @@ async function run() {
          const database = client.db('usersdb');
          const userCollection = database.collection('users');
 
+
+        //  for reading data 
+        app.get('/users',async(req,res) =>{
+            const cursor = userCollection.find();
+            const result = await cursor.toArray();
+            res.send(result)
+
+        })
+        // got to locahost and user /users 
+
         //  data sendin on server 
         app.post('/users',async(req,res) => {
             console.log(req.body)
